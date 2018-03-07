@@ -13,3 +13,4 @@ Tested under Matlab R2017a on Windows.
 This software comes free with the hope that it is useful, but without any warranty. 
 It is published under the terms of the GNU General Public License v3.0. You are free to use, modify and redistribute the code, provided the original source is attributed and further distribution is made under the same license.
 (c) Florian Denk, Department of Medical Physics and Acoustics, University of Oldenburg
+
