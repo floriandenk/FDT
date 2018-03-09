@@ -103,6 +103,10 @@ if mod(n_delay_ir,2)
     n_delay_ir = n_delay_ir +1;
 end
 
+% Optional: Specify index range in IR where peak occurrs 
+% (useful if reflection may be stringer than initial peak)
+vi_peakrange = 460:560;
+
 %% Processing
 
 % Broadband truncation
@@ -114,7 +118,8 @@ v_ir_bt = BBTruncate(v_ir_semi, 1, round( srate*T_tr_BT) + n_delay_ir , 0, 24);
                                v_trwin_lengths,...
                                srate, ...
                                n_block, ...
-                               n_shift);
+                               n_shift,...
+                               vi_peakrange); % Specification of peak range is optional!
 
 % bring all to same length
 if length(v_ir_anec) <= n_fft

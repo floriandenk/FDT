@@ -128,7 +128,8 @@ end
 v_ir_pd = [zeros(n_block,1) ; v_ir_in];
 
 % Compute delay in IR
-[~,n_delay_ir] = max(abs(hilbert(v_ir_pd(v_peakrange))));
+[~,n_delay_ir] = max(abs(hilbert(v_ir_pd(v_peakrange + n_block))));
+n_delay_ir = n_delay_ir + v_peakrange(1) - 1 + n_block; % correct offset of peakrange
 
 % Index where shortest truncation length ends
 n_ind_end = n_delay_ir + round( min(v_trwin_length(:))*srate );

@@ -73,6 +73,10 @@ v_ir_anec = impz(b, a, 5000); clear a b
 n_delay_first = 480;
 v_ir_anec = [zeros(n_delay_first,1); v_ir_anec];
 
+% Optional: Specify index range in IR where peak occurrs 
+% (useful if reflection may be stringer than initial peak)
+vi_peakrange = 420:520;
+
 %% Construct Reflection Filter
 f_cut = 1000; % lowest frequency with considerable energy
 n_refl = 1024; % length of reflection IR
@@ -129,7 +133,8 @@ v_ir_bt = BBTruncate(v_ir_semian, 1, round( srate*(T_tr_TD + n_delay_first/srate
                                v_trwin_lengths,...
                                srate, ...
                                n_block, ...
-                               n_shift);
+                               n_shift,...
+                               vi_peakrange); % Specification of peak range is optional!
     
 % FDT-DFT
 v_ir_dft = FDTruncate_DFT(v_ir_semian, v_trwin_lengths, srate);      
@@ -359,12 +364,12 @@ y_sep = pi/8;
 semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_semian)) ),...
      mr_semi    , 'Color', cl_semi,    'LineWidth',   lw_sm, 'Visible', 'off'); hold on
 semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_bt )) ) + 2*pi   + 1*y_sep, ...
-    mr_bt    , 'Color', cl_bt,    'LineWidth', lw_sm);
-semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_dft)) ) + 2*pi   + 0*y_sep,...
+    mr_bt    , 'Color', cl_bt,    'LineWidth', lw_sm); hold on
+semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_dft)) ) + 0*pi   + 0*y_sep,...
     mr_dft   , 'Color', cl_dft,   'LineWidth', lw_sm); hold on
 semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_stft )) ) - 2*pi - 1*y_sep, ...
     mr_stft  , 'Color', cl_stft,  'LineWidth', lw_sm); hold on
-semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_sm  )) )         - 2*y_sep, ...
+semilogx(v_frq_stft, unwrap( angle(fftR(v_ir_anec)) -  angle(fftR(v_ir_sm  )) )  -2*pi      - 2*y_sep, ...
      mr_sm    , 'Color', cl_sm,    'LineWidth', lw_sm);
 xlim(xlim_pl)
 ylim([-1 1])
@@ -378,6 +383,8 @@ box on
 ylabel('\Delta\angleH [rad]')
 title('Deviation from Anechoic Phase')
 pause(.1)
+
+text(60, pi/4, 'Phase responses might be shifted by \pm 2 \pi')
 
 xlabel('f [kHz]')
 
