@@ -20,7 +20,7 @@ function v_ir_out = FDTruncate_DFT(v_ir_in, v_tr_lengths, srate, v_peakrange)
 % Denk, F., Kollmeier, B and Ewert, S.D.
 % "Removing reflections in semianechoic impulse responses by 
 %  frequency-dependent truncation "
-% Journal of the Audio Engineering Society, vol 66, No 4, 2018
+% Journal of the Audio Engineering Society 66(3), p. 146-153, 2018
 % DOI: https://doi.org/10.17743/jaes.2018.0002
 %
 % Please cite the paper when using the code in this repository.

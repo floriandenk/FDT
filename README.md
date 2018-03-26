@@ -7,7 +7,7 @@ This is supplementary material to the publication [1]. There, the scientific det
 Tested under Matlab R2017a on Windows.
 
 # Reference
-[1] Denk, F., Kollmeier, B. and Ewert, S.D., 2018. "Removing reflections in semianechoic impulse responses by  frequency-dependent truncation" Journal of the Audio Engineering Society 66(4), 2018. DOI: https://doi.org/10.17743/jaes.2018.0002
+[1] Denk, F., Kollmeier, B. and Ewert, S.D., 2018. "Removing reflections in semianechoic impulse responses by frequency-dependent truncation" Journal of the Audio Engineering Society 66(3), p. 146-153, 2018. DOI: https://doi.org/10.17743/jaes.2018.0002
 
 # License
 This software comes free with the hope that it is useful, but without any warranty. 
